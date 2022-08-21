@@ -38,9 +38,17 @@ document.addEventListener('keypress', (event) => {
         if (data.currentEp == data.episodeList.length-1) changeSeason(data.currentSeas+1, data.seasonList);
         else changeEpisode(data.currentEp+1, data.episodeList);
     }
-    if(keyName.match(/(B|И)/i)){
+    else if(keyName.match(/^(B|И)/i)){
         let data = getData();
-        if (data.currentEp == 0) changeSeason(data.currentSeas-1, data.seasonList);
+        console.log(event);
+        if (data.currentEp == 0) {
+            changeSeason(data.currentSeas-1, data.seasonList);
+            setTimeout(function () {
+                data = getData();
+                changeEpisode(data.episodeList.length-1, data.episodeList)
+            }, 500);
+        }
         else changeEpisode(data.currentEp-1, data.episodeList);
+    }
     }
   })
