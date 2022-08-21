@@ -5,7 +5,7 @@ Automatically switches to the next/previous season.
 
 You need Tampermonkey to install this script: https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo
 
-To install script you need to click on "episode_change.user.js", click "Raw" and then "Install"
+To install script you need to click on "change_episode.user.js", click "Raw" and then "Install"
 
 If your browser downloads file instead of script installation:
 
