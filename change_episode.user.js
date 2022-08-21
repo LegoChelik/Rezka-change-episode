@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Rezka change episode
-// @version      1.0
+// @version      1.1
 // @description  Allows you to change episodes on hdrezka. B - previous, N - next
 // @author       https://vk.com/legoklyachik
 // @match        https://rezkify.com/*
