@@ -5,6 +5,8 @@
 // @author       https://vk.com/legoklyachik
 // @match        https://rezkify.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=rezkify.com
+// @downloadUrl  https://github.com/LegoChelik/Rezka-change-episode/raw/main/change_episode.user.js
+// @updateUrl    https://github.com/LegoChelik/Rezka-change-episode/raw/main/change_episode.user.js
 // ==/UserScript==
 
 function changeEpisode(change, episodeList) {
