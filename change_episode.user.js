@@ -51,4 +51,4 @@ document.addEventListener('keypress', (event) => {
         else changeEpisode(data.currentEp-1, data.episodeList);
     }
     }
-  })
+  )
