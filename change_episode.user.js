@@ -1,54 +1,37 @@
 // ==UserScript==
 // @name         Rezka change episode
-// @version      1.1
+// @version      1.2
 // @description  Allows you to change episodes on hdrezka. B - previous, N - next
 // @author       https://vk.com/legoklyachik
-// @match        https://rezkify.com/*
+// @match        https://rezka.fi/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=rezkify.com
 // @downloadURL  https://github.com/LegoChelik/Rezka-change-episode/raw/main/change_episode.user.js
 // @updateURL    https://github.com/LegoChelik/Rezka-change-episode/raw/main/change_episode.user.js
 // ==/UserScript==
 
-function changeEpisode(change, episodeList) {
-    if (change >= 0 && change != episodeList.length) episodeList[change].click()
-}
-
-function changeSeason(change, seasonList) {
-    if (change >= 0 && change != seasonList.length) seasonList[change].click()
-}
-
 function getData() {
-    let url = window.location.href.split('#')[1];
-    url = url.split('-');
-    let data = {'t': 0, 's':-1, 'e':-1};
-    let keys = Object.keys(data);
-    for (let i = 0; i<3; i++) {
-        data[keys[i]] += Number(url[i].split(':')[1]);
-    }
-    let seasonList = document.getElementsByClassName('b-simple_season__item');
-    let season = document.getElementById('simple-episodes-list-'+(data.s+1));
-    let episodeList = season.getElementsByClassName('b-simple_episode__item');
-    return {'currentEp': data.e, 'currentSeas': data.s, 'seasonList': seasonList, 'episodeList': episodeList};
+    let season = document.getElementsByClassName('b-simple_season__item active')[0]
+    let episode = document.getElementsByClassName('b-simple_episode__item active')[0]
+    return {'s': season, 'e': episode}
 }
 
 document.addEventListener('keypress', (event) => {
     let keyName = event.key;
     if(keyName.match(/(N|Т)/i)){
         let data = getData();
-        if (data.currentEp == data.episodeList.length-1) changeSeason(data.currentSeas+1, data.seasonList);
-        else changeEpisode(data.currentEp+1, data.episodeList);
+        if (data.e.nextElementSibling != null) {
+            data.e.nextElementSibling.click()
+        } else if (data.s.nextElementSibling != null) {
+            data.s.nextElementSibling.click()
+        }
     }
     else if(keyName.match(/^(B|И)/i)){
         let data = getData();
-        console.log(event);
-        if (data.currentEp == 0) {
-            changeSeason(data.currentSeas-1, data.seasonList);
-            setTimeout(function () {
-                data = getData();
-                changeEpisode(data.episodeList.length-1, data.episodeList)
-            }, 500);
+        if (data.e.previousElementSibling != null) {
+            data.e.previousElementSibling.click()
+        } else if (data.s.previousElementSibling != null) {
+            data.s.previousElementSibling.click()
         }
-        else changeEpisode(data.currentEp-1, data.episodeList);
     }
     }
   )
